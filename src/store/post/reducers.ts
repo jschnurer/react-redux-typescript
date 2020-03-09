@@ -1,17 +1,11 @@
 import {
   PostState,
-  GET_ALL_POSTS,
-  GET_POST,
-  PostActionTypes
+  PostActionTypes,
+  PUT_ALL_POSTS
 } from './types'
 
 const initialState: PostState = {
-  posts: [{
-    id: 1,
-    userId: 1,
-    title: "Sample Post",
-    body: "This was a triumph."
-  }]
+  posts: []
 }
 
 export function postReducer(
@@ -19,11 +13,10 @@ export function postReducer(
   action: PostActionTypes
 ): PostState {
   switch(action.type) {
-    case GET_ALL_POSTS: {
-      return state;
-    }
-    case GET_POST: {
-      return state;
+    case PUT_ALL_POSTS: {
+      return {
+        posts: action.payload
+      }
     }
     default: {
       return state;

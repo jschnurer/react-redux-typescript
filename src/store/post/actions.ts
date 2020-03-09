@@ -1,16 +1,23 @@
-import { GET_ALL_POSTS, GET_POST, PostActionTypes } from './types';
+import { Post, FETCH_ALL_POSTS, FETCH_POST, PostActionTypes, PUT_ALL_POSTS } from './types';
 
-export function getAllPosts(): PostActionTypes {
+export function fetchAllPosts(): PostActionTypes {
   return {
-    type: GET_ALL_POSTS
+    type: FETCH_ALL_POSTS
   };
 }
 
-export function getPost(postId: number): PostActionTypes {
+export function fetchPost(postId: number): PostActionTypes {
   return {
-    type: GET_POST,
+    type: FETCH_POST,
     meta: {
       postId
     }
+  };
+}
+
+export function putAllPosts(posts: Post[]): PostActionTypes {
+  return {
+    type: PUT_ALL_POSTS,
+    payload: posts
   };
 }
