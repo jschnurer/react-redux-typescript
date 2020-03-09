@@ -5,9 +5,9 @@ const PostList: React.FunctionComponent = () => {
   const posts = useSelector(state => state.post.posts);
 
   return (
-    <div>
-      {posts.map(post => <a>{post.title}</a>)}
-    </div>
+    <React.Fragment>
+      {posts.map(post => <div key={post.id}>{post.title}</div>)}
+    </React.Fragment>
   );
 }
 
