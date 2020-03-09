@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import useSelector from "../../store/useSelector";
 import { clearFetchError } from "../../store/post/actions";
+import "./PostFetchError.scoped.css";
 
 export interface PostFetchErrorParams {
   error: string
@@ -16,10 +17,10 @@ const PostFetchError: React.FunctionComponent<PostFetchErrorParams> = (props) =>
   }
 
   return (
-    <div className="post-fetch-error">
-      <span className="title-bar">
+    <div>
+      <span>
         Error
-        <a onClick={() => dispatch(clearFetchError())}>x</a>
+        <span onClick={() => dispatch(clearFetchError())}>x</span>
       </span>
       {props.error}
     </div>
