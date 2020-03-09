@@ -1,16 +1,20 @@
+import cloneDeep from "lodash/cloneDeep";
+import findIndex from "lodash/findIndex";
 import {
   Post,
   PostState,
   PostActionTypes,
-  PUT_ALL_POSTS,
-  PUT_POST,
-  START_FETCHING,
-  STOP_FETCHING
+  POSTS_RECEIVED,
+  START_FETCHING_POSTS,
+  STOP_FETCHING_POSTS,
+  FETCHING_POSTS_FAILED,
+  CLEAR_FETCH_ERROR,
 } from './types'
 
 const initialState: PostState = {
   posts: [],
   isFetching: false,
+  fetchError: "",
 }
 
 const postSorter = (a: Post, b: Post) => a.title < b.title ? -1 : 1;
@@ -20,45 +24,45 @@ export function postReducer(
   action: PostActionTypes
 ): PostState {
   switch(action.type) {
-    case PUT_ALL_POSTS: {
+    case POSTS_RECEIVED: {
+      let newPosts = cloneDeep(state.posts);
+      action.payload.forEach(post => {
+        let ix = findIndex(newPosts, p => p.id === post.id);
+        if (ix > -1) {
+          newPosts[ix] = post;
+        } else {
+          newPosts.push(post);
+        }
+      });
+
       return {
         ...state,
-        posts: action.payload
-          .slice()
-          .sort(postSorter),
+        posts: newPosts.sort(postSorter),
       };
     }
-    case PUT_POST: {
-      let existing = state.posts.find(x => x.id === action.payload.id);
-      if(existing) {
-        return {
-          ...state,
-          posts: [
-            ...state.posts.filter(x => x.id !== action.payload.id),
-            action.payload
-          ].sort(postSorter)
-        }
-      } else {
-        return {
-          ...state,
-          posts: [
-            ...state.posts,
-            action.payload
-          ].sort(postSorter)
-        };
-      }
-    }
-    case START_FETCHING: {
+    case START_FETCHING_POSTS: {
       return {
         ...state,
         isFetching: true,
       };
     }
-    case STOP_FETCHING: {
+    case STOP_FETCHING_POSTS: {
       return {
         ...state,
         isFetching: false,
       };
+    }
+    case FETCHING_POSTS_FAILED: {
+      return {
+        ...state,
+        fetchError: action.error
+      }
+    }
+    case CLEAR_FETCH_ERROR: {
+      return {
+        ...state,
+        fetchError: "",
+      }
     }
     default: {
       return state;

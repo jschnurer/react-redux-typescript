@@ -2,11 +2,12 @@ import {
   Post,
   FETCH_ALL_POSTS,
   FETCH_POST,
-  PUT_ALL_POSTS,
-  PUT_POST,
+  POSTS_RECEIVED,
   PostActionTypes,
-  START_FETCHING,
-  STOP_FETCHING,
+  START_FETCHING_POSTS,
+  STOP_FETCHING_POSTS,
+  FETCHING_POSTS_FAILED,
+  CLEAR_FETCH_ERROR,
 } from './types';
 
 export function fetchAllPosts(): PostActionTypes {
@@ -22,28 +23,34 @@ export function fetchPost(postId: number): PostActionTypes {
   };
 }
 
-export function putAllPosts(posts: Post[]): PostActionTypes {
+export function postsReceived(posts: Post[]): PostActionTypes {
   return {
-    type: PUT_ALL_POSTS,
+    type: POSTS_RECEIVED,
     payload: posts
-  };
-}
-
-export function putPost(post: Post): PostActionTypes {
-  return {
-    type: PUT_POST,
-    payload: post
   };
 }
 
 export function startFetching() : PostActionTypes {
   return {
-    type: START_FETCHING
+    type: START_FETCHING_POSTS
   }
 }
 
 export function stopFetching() : PostActionTypes {
   return {
-    type: STOP_FETCHING
+    type: STOP_FETCHING_POSTS
+  }
+}
+
+export function fetchFailed(error: string) : PostActionTypes {
+  return {
+    type: FETCHING_POSTS_FAILED,
+    error
+  }
+}
+
+export function clearFetchError() : PostActionTypes {
+  return {
+    type: CLEAR_FETCH_ERROR
   }
 }

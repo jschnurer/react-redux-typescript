@@ -7,15 +7,17 @@ export interface Post {
 
 export interface PostState {
   posts: Post[],
-  isFetching: boolean
+  isFetching: boolean,
+  fetchError: string,
 }
 
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const FETCH_POST = 'FETCH_POST';
-export const PUT_ALL_POSTS = 'PUT_ALL_POSTS';
-export const PUT_POST = 'PUT_POST';
-export const START_FETCHING = 'START_FETCHING';
-export const STOP_FETCHING = 'STOP_FETCHING';
+export const POSTS_RECEIVED = 'POSTS_RECEIVED';
+export const START_FETCHING_POSTS = 'START_FETCHING_POSTS';
+export const STOP_FETCHING_POSTS = 'STOP_FETCHING_POSTS';
+export const FETCHING_POSTS_FAILED = 'FETCHING_POSTS_FAILED';
+export const CLEAR_FETCH_ERROR = 'CLEAR_FETCH_ERROR';
 
 interface FetchAllPostsAction {
   type: typeof FETCH_ALL_POSTS
@@ -26,28 +28,33 @@ export interface FetchPostAction {
   postId: number
 }
 
-interface PutAllPosts {
-  type: typeof PUT_ALL_POSTS,
+interface PostsReceived {
+  type: typeof POSTS_RECEIVED,
   payload: Post[]
 }
 
-interface PutPost {
-  type: typeof PUT_POST,
-  payload: Post
-}
-
 interface StartFetching {
-  type: typeof START_FETCHING
+  type: typeof START_FETCHING_POSTS
 }
 
 interface StopFetching {
-  type: typeof STOP_FETCHING
+  type: typeof STOP_FETCHING_POSTS
+}
+
+interface FetchFailed {
+  type: typeof FETCHING_POSTS_FAILED,
+  error: string
+}
+
+interface ClearFetchError {
+  type: typeof CLEAR_FETCH_ERROR,
 }
 
 export type PostActionTypes =
   FetchAllPostsAction |
   FetchPostAction |
-  PutAllPosts |
-  PutPost |
+  PostsReceived |
   StartFetching |
-  StopFetching;
+  StopFetching |
+  FetchFailed |
+  ClearFetchError;

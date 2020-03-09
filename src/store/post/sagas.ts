@@ -1,20 +1,35 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { Post, FETCH_ALL_POSTS, FETCH_POST, FetchPostAction } from "./types";
-import { putAllPosts, putPost, startFetching, stopFetching } from "./actions";
+import { postsReceived, startFetching, stopFetching, fetchFailed } from "./actions";
 import PostsApi from "../../apis/posts/PostsApi";
 
 function* fetchAllPostsAsync() {
   yield put(startFetching());
-  const posts: Post[] = yield call(PostsApi.fetchAll);
-  yield put(putAllPosts(posts));
-  yield put(stopFetching());
+  try {
+    const posts: Post[] = yield call(PostsApi.fetchAll);
+    yield put(postsReceived(posts));
+  }
+  catch (error) {
+    let err: Error = error;
+    yield put(fetchFailed(err.message));
+  }
+  finally {
+    yield put(stopFetching());
+  }
 }
 
 function* fetchPostAsync(action: FetchPostAction) {
   yield put(startFetching());
-  const post: Post = yield call(PostsApi.fetch, action.postId);
-  yield put(putPost(post));
-  yield put(stopFetching());
+  try {
+    const post: Post = yield call(PostsApi.fetch, action.postId);
+    yield put(postsReceived([post]));
+  }
+  catch (error) {
+    let err: Error = error;
+    yield put(fetchFailed(err.message));
+  } finally {
+    yield put(stopFetching());
+  }
 }
 
 export function* watchFetchAllPostsAsync() {
