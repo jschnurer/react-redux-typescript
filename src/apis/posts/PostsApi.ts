@@ -6,6 +6,12 @@ class PostsApi {
         .then(res => res.json())
         .then(res => res.map((post: any) => formatPost(post)));
   }
+
+  public async fetch(id: number): Promise<Post> {
+    return fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        .then(res => res.json())
+        .then(post => formatPost(post));
+  }
 }
 
 export default new PostsApi();
