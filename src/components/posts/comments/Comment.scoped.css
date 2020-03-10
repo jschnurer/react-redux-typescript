@@ -1,0 +1,36 @@
+.holder {
+  margin-bottom: 2em;
+}
+
+.holder:last-child {
+  margin-bottom: 0;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #FFE9FF;
+  border-radius: 1em;
+  padding: 1em;
+  margin-bottom: 1.5em;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2em;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: #FFE9FF;
+  border-bottom: 0;
+  border-right: 0;
+  margin-left: -10px;
+  margin-bottom: -20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  padding-left: 1em;
+}

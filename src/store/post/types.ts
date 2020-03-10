@@ -1,5 +1,5 @@
 export interface Post {
-  userId: number,
+  userId: string,
   id: number,
   title: string,
   body: string,
@@ -9,7 +9,8 @@ export interface Post {
 export interface PostComment {
   id: number,
   body: string,
-  postId: number
+  postId: number,
+  userId: string
 }
 
 export interface PostState {

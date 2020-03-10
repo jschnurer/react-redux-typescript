@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Post } from "../../../store/post/types";
 import { fetchComments } from "../../../store/post/actions";
+import Comment from "./Comment";
 
 interface CommentsListProps {
   post: Post
@@ -17,7 +18,7 @@ const CommentsList: React.FunctionComponent<CommentsListProps> = ({post}) => {
     }
     {post.comments !== null &&
       <div>
-        {post.comments.map(c => <div key={c.id}>{c.body}</div>)}
+        {post.comments.map(c => <Comment key={c.id} comment={c} />)}
       </div>
     }
   </>;

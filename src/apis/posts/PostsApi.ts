@@ -38,6 +38,7 @@ function formatComment(comment: any): PostComment {
   return {
     id: comment.id,
     body: comment.body,
-    postId: comment.postId
+    postId: comment.postId,
+    userId: comment.userId,
   }
 }
