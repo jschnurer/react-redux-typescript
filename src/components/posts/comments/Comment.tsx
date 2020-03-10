@@ -1,7 +1,7 @@
 import React from "react";
-import { PostComment } from "../../../store/post/types";
 import "./Comment.scoped.css";
 import FormattedDateString from "../../misc/FormattedDateString";
+import { PostComment } from "../../../store/comment/types";
 
 interface CommentProps {
   comment: PostComment

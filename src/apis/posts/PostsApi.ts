@@ -1,5 +1,6 @@
-import { PostComment, Post } from "../../store/post/types";
+import { Post } from "../../store/post/types";
 import formatDate from "../../utils/parseDate";
+import { PostComment } from "../../store/comment/types";
 
 const url = "https://my-json-server.typicode.com/jschnurer/json-placeholder";
 
@@ -31,7 +32,6 @@ function formatPost(post: any): Post {
     userId: post.userId,
     title: post.title,
     body: post.body,
-    comments: null,
     time: formatDate(post.time),
   }
 }

@@ -14,14 +14,14 @@ interface PostParams {
       id: string
     }
   },
-  isFetching: boolean,
+  isFetchingPosts: boolean,
   posts: PostObj[]
 }
 
 const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) => {
   const dispatch = useDispatch();
   const post = useSelector(state => state.post.posts.find(x => x.id === parseInt(id, 10)));
-  const isFetching = useSelector(state => state.post.isFetching);
+  const isFetchingPosts = useSelector(state => state.post.isFetching);
 
   useEffect(() => {
     if (!post) {
@@ -29,7 +29,7 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
     }
   }, [dispatch, id, post]);
 
-  if (isFetching) {
+  if (isFetchingPosts) {
     return <ModalSpinner />;
   }
 
@@ -41,7 +41,7 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
     <p>{post?.body || "The requested post was not found."}</p>
     <Link to="/posts">&lt; Back to Posts</Link>
     {post &&
-      <CommentsList post={post} />
+      <CommentsList postId={post.id} />
     }
   </>;
 }

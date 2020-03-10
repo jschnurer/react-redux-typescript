@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
 
-import {watchFetchAllPostsAsync, watchFetchPostAsync, watchFetchCommentsAsync} from "./post/sagas";
+import {watchFetchAllPostsAsync, watchFetchPostAsync} from "./post/sagas";
+import { watchFetchCommentsAsync } from './comment/sagas';
 
 export default function* rootSaga() {
   yield all([

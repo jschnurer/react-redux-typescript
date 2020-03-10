@@ -1,29 +1,30 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Post } from "../../../store/post/types";
-import { fetchComments } from "../../../store/post/actions";
 import Comment from "./Comment";
+import useSelector from "../../../store/useSelector";
+import { fetchComments } from "../../../store/comment/actions";
 
 interface CommentsListProps {
-  post: Post
+  postId: number
 }
 
-const CommentsList: React.FunctionComponent<CommentsListProps> = ({ post }) => {
+const CommentsList: React.FunctionComponent<CommentsListProps> = ({ postId }) => {
   const dispatch = useDispatch();
+  const { comments } = useSelector(state => state.comment);
 
   let title = <h2>Comments</h2>;
 
-  if (post.comments === null) {
+  if (!comments[postId]) {
     return <>
       {title}
-      <button onClick={() => dispatch(fetchComments(post.id))}>
+      <button onClick={() => dispatch(fetchComments(postId))}>
         Load Comments
       </button>
     </>;
-  } else if (post.comments && post.comments.length) {
+  } else if (comments[postId] && comments[postId]) {
     return <>{title}
       <div>
-        {post.comments.map(c => <Comment key={c.id} comment={c} />)}
+        {comments[postId].map(c => <Comment key={c.id} comment={c} />)}
       </div>
     </>;
   } else {
