@@ -1,7 +1,6 @@
 import cloneDeep from "lodash/cloneDeep";
 import findIndex from "lodash/findIndex";
 import {
-  Post,
   PostState,
   PostActionTypes,
   POSTS_RECEIVED,
@@ -14,28 +13,26 @@ const initialState: PostState = {
   isFetching: false,
 }
 
-const postSorter = (a: Post, b: Post) => a.title < b.title ? -1 : 1;
-
 export function postReducer(
   state = initialState,
   action: PostActionTypes
 ): PostState {
   switch(action.type) {
     case POSTS_RECEIVED: {
-      let newPosts = cloneDeep(state.posts);
+      let newState = cloneDeep(state);
+
       action.payload.forEach(post => {
-        let ix = findIndex(newPosts, p => p.id === post.id);
+        let ix = findIndex(newState.posts, p => p.id === post.id);
         if (ix > -1) {
-          newPosts[ix] = post;
+          newState.posts[ix] = post;
         } else {
-          newPosts.push(post);
+          newState.posts.push(post);
         }
       });
 
-      return {
-        ...state,
-        posts: newPosts.sort(postSorter),
-      };
+      newState.posts = newState.posts.sort((a, b) => a.title < b.title ? -1 : 1);
+
+      return newState;
     }
     case START_FETCHING_POSTS: {
       return {

@@ -12,7 +12,7 @@ const ErrorsList: React.FunctionComponent = (props) => {
 
   return (
     <div>
-      {errors.map(err => <Error error={err} />)}
+      {errors.map(err => <Error key={err.id} error={err} />)}
     </div>
   );
 }

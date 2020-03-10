@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './App.css';
-import PostList from "./components/posts/PostList";
-import ErrorsList from './components/errors/ErrorsList';
+import Routing from "./Routing";
+import Layout from './components/layout/Layout';
 
-export default () => 
-  <Fragment>
-    <PostList />
-    <ErrorsList />
-  </Fragment>;
+export default () =>
+  <Layout>
+    <Routing />
+  </Layout>;

@@ -1,3 +1,7 @@
+html {
+  margin: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,35 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.accent1-bg {
+  background-color: #3A003E;
+}
+.accent1 {
+  color: #3A003E;
+}
+.accent2-bg {
+  background-color: #74007A;
+}
+.accent2 {
+  color: #74007A;
+}
+.accent3-bg {
+  background-color: #A53FAA;
+}
+.accent3 {
+  color: #A53FAA;
+}
+.accent4-bg {
+  background-color: #FAB0FA;
+}
+.accent4 {
+  color: #FAB0FA;
+}
+.accent5-bg {
+  background-color: #FFE9FF;
+}
+.accent5 {
+  color: #FFE9FF;
 }

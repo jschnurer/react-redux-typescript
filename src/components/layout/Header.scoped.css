@@ -1,0 +1,23 @@
+.header {
+  overflow: hidden;
+  padding: 1.25em;
+}
+
+.header > div {
+  max-width: 31em;
+  margin: auto;
+  cursor: pointer;
+}
+
+.title {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+}
+
+.tagline {
+  display: block;
+  float: right;
+  margin-right: 3em;
+}
