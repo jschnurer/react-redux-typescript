@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { Post, FETCH_ALL_POSTS, FETCH_POST, FetchPostAction } from "./types";
 import { postsReceived, startFetching, stopFetching } from "./actions";
 import { pushError } from "../error/actions";
@@ -38,5 +38,5 @@ export function* watchFetchAllPostsAsync() {
 }
 
 export function* watchFetchPostAsync() {
-  yield takeLatest(FETCH_POST, fetchPostAsync);
+  yield takeEvery(FETCH_POST, fetchPostAsync);
 }

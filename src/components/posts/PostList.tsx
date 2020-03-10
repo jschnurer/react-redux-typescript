@@ -14,7 +14,7 @@ const PostList: React.FunctionComponent = () => {
     if(!fetchedAll) {
       dispatch(fetchAllPosts());
     }
-  }, [dispatch]);
+  }, [dispatch, fetchedAll]);
 
   return (
     <>

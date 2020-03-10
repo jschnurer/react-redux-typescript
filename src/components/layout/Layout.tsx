@@ -8,6 +8,6 @@ const Layout: React.FunctionComponent = (props) =>
     <div className="page">
       {props.children}
     </div>
-  </>
+  </>;
 
 export default Layout;

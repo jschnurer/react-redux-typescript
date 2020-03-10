@@ -1,7 +1,6 @@
 export default function (dateStr: string): Date | null {
   try {
-    let timeStr: string = dateStr;
-    let chunks = timeStr.split(' ');
+    let chunks = dateStr.split(' ');
     let dateChunks = chunks[0].split('-');
     let timeChunks = chunks[1].split(':');
 

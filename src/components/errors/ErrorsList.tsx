@@ -3,7 +3,7 @@ import useSelector from "../../store/useSelector";
 import Error from "./Error";
 import "./ErrorsList.scoped.css";
 
-const ErrorsList: React.FunctionComponent = (props) => {
+const ErrorsList: React.FunctionComponent = () => {
   const { errors } = useSelector(state => state.error);
 
   if (!errors.length) {
@@ -12,7 +12,7 @@ const ErrorsList: React.FunctionComponent = (props) => {
 
   return (
     <div>
-      {errors.map(err => <Error key={err.id} error={err} />)}
+      {errors.map(err => <Error key={err.id} {...err} />)}
     </div>
   );
 }

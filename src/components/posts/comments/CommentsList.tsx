@@ -34,7 +34,7 @@ const CommentsList: React.FunctionComponent<CommentsListProps> = ({ postId }) =>
   } else if (comments[postId] && comments[postId]) {
     return <>{title}
       <div>
-        {comments[postId].map(c => <Comment key={c.id} comment={c} />)}
+        {comments[postId].map(c => <Comment key={c.id} {...c} />)}
       </div>
     </>;
   } else {

@@ -3,17 +3,13 @@ import "./Comment.scoped.css";
 import FormattedDateString from "../../misc/FormattedDateString";
 import { PostComment } from "../../../store/comment/types";
 
-interface CommentProps {
-  comment: PostComment
-}
-
-const Comment: React.FunctionComponent<CommentProps> = (props) => {
+const Comment: React.FunctionComponent<PostComment> = (comment) => {
   return <div className="holder">
-    <div className="speech-bubble">{props.comment.body}</div>
+    <div className="speech-bubble">{comment.body}</div>
     <label>
-      {props.comment.userId}
-      {props.comment.time &&
-        <span>, <FormattedDateString date={props.comment.time} /></span>
+      {comment.userId}
+      {comment.time &&
+        <span>, <FormattedDateString date={comment.time} /></span>
       }
     </label>
   </div>

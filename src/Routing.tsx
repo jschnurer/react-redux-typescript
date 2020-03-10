@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +10,7 @@ import Welcome from "./components/welcome/Welcome";
 import Post from "./components/posts/Post";
 
 const Routing: React.FunctionComponent = () =>
-  <Fragment>
+  <>
     <Router>
       <Switch>
         <Route path="/posts/:id" component={Post} />
@@ -23,6 +23,6 @@ const Routing: React.FunctionComponent = () =>
       </Switch>
     </Router>
     <ErrorsList />
-  </Fragment>;
+  </>;
 
 export default Routing;
