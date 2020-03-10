@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchAllPosts } from "../../store/post/actions";
 import ModalSpinner from "../misc/ModalSpinner";
 import { Link } from "react-router-dom";
+import "./PostList.scoped.css";
 
 const PostList: React.FunctionComponent = () => {
   const { posts, isFetching, fetchedAll } = useSelector(state => state.post);
@@ -19,7 +20,7 @@ const PostList: React.FunctionComponent = () => {
     <>
       <h2>Posts</h2>
       {posts.map(post =>
-        <Link key={post.id} to={`/posts/${post.id}`} style={{ display: "block" }}>
+        <Link key={post.id} to={`/posts/${post.id}`}>
           {post.title}
         </Link>)
       }

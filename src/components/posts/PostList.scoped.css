@@ -1,0 +1,10 @@
+a {
+  display: table;
+  font-size: 1.25em;
+  margin: .5em 0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

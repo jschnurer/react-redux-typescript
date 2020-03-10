@@ -8,20 +8,30 @@ interface CommentsListProps {
   post: Post
 }
 
-const CommentsList: React.FunctionComponent<CommentsListProps> = ({post}) => {
+const CommentsList: React.FunctionComponent<CommentsListProps> = ({ post }) => {
   const dispatch = useDispatch();
-  
-  return <>
-    <h2>Comments</h2>
-    {post.comments === null &&
-      <button onClick={() => dispatch(fetchComments(post.id))}>Load Comments</button>
-    }
-    {post.comments !== null &&
+
+  let title = <h2>Comments</h2>;
+
+  if (post.comments === null) {
+    return <>
+      {title}
+      <button onClick={() => dispatch(fetchComments(post.id))}>
+        Load Comments
+      </button>
+    </>;
+  } else if (post.comments && post.comments.length) {
+    return <>{title}
       <div>
         {post.comments.map(c => <Comment key={c.id} comment={c} />)}
       </div>
-    }
-  </>;
+    </>;
+  } else {
+    return <>
+      {title}
+      *crickets*
+    </>;
+  }
 }
 
 export default CommentsList;
