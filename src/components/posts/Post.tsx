@@ -33,20 +33,16 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
     return <ModalSpinner />;
   }
 
-  if (!post) {
-    return <>
-      <h2>Post not found</h2>
-      <p>The requested post was not found.</p>
-      <Link to="/posts">Back to Posts</Link>
-    </>;
-  }
-
   return <>
-    <h2>{post.title}</h2>
-    <span>{post.userId}, <FormattedDateString date={post.time} /></span>
-    <p>{post.body}</p>
-    <Link to="/posts">Back to Posts</Link>
-    <CommentsList post={post} />
+    <h2>{post?.title || "Post not found"}</h2>
+    {post &&
+      <span>{post.userId}, <FormattedDateString date={post.time} /></span>
+    }
+    <p>{post?.body || "The requested post was not found."}</p>
+    <Link to="/posts">&lt; Back to Posts</Link>
+    {post &&
+      <CommentsList post={post} />
+    }
   </>;
 }
 
