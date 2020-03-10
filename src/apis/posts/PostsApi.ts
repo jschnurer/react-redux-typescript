@@ -1,18 +1,19 @@
 import { PostComment, Post } from "../../store/post/types";
+import formatDate from "../../utils/parseDate";
 
 const url = "https://my-json-server.typicode.com/jschnurer/json-placeholder";
 
 class PostsApi {
   public async fetchAll(): Promise<Post[]> {
     return fetch(`${url}/posts`)
-        .then(res => res.json())
-        .then(res => res.map((post: any) => formatPost(post)));
+      .then(res => res.json())
+      .then(res => res.map((post: any) => formatPost(post)));
   }
 
   public async fetch(id: number): Promise<Post> {
     return fetch(`${url}/posts/${id}`)
-        .then(res => res.json())
-        .then(post => formatPost(post));
+      .then(res => res.json())
+      .then(post => formatPost(post));
   }
 
   public async fetchComments(postId: number): Promise<PostComment[]> {
@@ -31,6 +32,7 @@ function formatPost(post: any): Post {
     title: post.title,
     body: post.body,
     comments: null,
+    time: formatDate(post.time),
   }
 }
 
@@ -40,5 +42,6 @@ function formatComment(comment: any): PostComment {
     body: comment.body,
     postId: comment.postId,
     userId: comment.userId,
+    time: formatDate(comment.time),
   }
 }

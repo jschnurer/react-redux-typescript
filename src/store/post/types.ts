@@ -3,14 +3,16 @@ export interface Post {
   id: number,
   title: string,
   body: string,
-  comments: PostComment[] | null
+  comments: PostComment[] | null,
+  time: Date | null
 }
 
 export interface PostComment {
   id: number,
   body: string,
   postId: number,
-  userId: string
+  userId: string,
+  time: Date | null
 }
 
 export interface PostState {

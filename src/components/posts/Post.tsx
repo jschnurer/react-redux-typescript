@@ -6,6 +6,7 @@ import { Post as PostObj } from "../../store/post/types";
 import useSelector from "../../store/useSelector";
 import { Link } from "react-router-dom";
 import CommentsList from "./comments/CommentsList";
+import FormattedDateString from "../misc/FormattedDateString";
 
 interface PostParams {
   match: {
@@ -42,6 +43,7 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
 
   return <>
     <h2>{post.title}</h2>
+    <span>{post.userId}, <FormattedDateString date={post.time} /></span>
     <p>{post.body}</p>
     <Link to="/posts">Back to Posts</Link>
     <CommentsList post={post} />
