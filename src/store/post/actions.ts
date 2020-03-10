@@ -6,6 +6,9 @@ import {
   PostActionTypes,
   START_FETCHING_POSTS,
   STOP_FETCHING_POSTS,
+  FETCH_COMMENTS,
+  COMMENTS_RECEIVED,
+  PostComment,
 } from './types';
 
 export function fetchAllPosts(): PostActionTypes {
@@ -38,4 +41,19 @@ export function stopFetching() : PostActionTypes {
   return {
     type: STOP_FETCHING_POSTS
   }
+}
+
+export function fetchComments(postId: number) : PostActionTypes {
+  return {
+    type: FETCH_COMMENTS,
+    postId: postId
+  }
+}
+
+export function commentsReceived(comments: PostComment[], postId: number): PostActionTypes {
+  return {
+    type: COMMENTS_RECEIVED,
+    comments: comments,
+    postId
+  };
 }

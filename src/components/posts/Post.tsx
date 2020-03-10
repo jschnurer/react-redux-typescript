@@ -5,6 +5,7 @@ import { fetchPost } from "../../store/post/actions";
 import { Post as PostObj } from "../../store/post/types";
 import useSelector from "../../store/useSelector";
 import { Link } from "react-router-dom";
+import CommentsList from "./comments/CommentsList";
 
 interface PostParams {
   match: {
@@ -23,7 +24,7 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
 
   useEffect(() => {
     if (!post) {
-      dispatch(fetchPost(parseInt(id)));
+      dispatch(fetchPost(parseInt(id, 10)));
     }
   }, [dispatch, id, post]);
 
@@ -43,6 +44,7 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
     <h2>{post.title}</h2>
     <p>{post.body}</p>
     <Link to="/posts">Back to Posts</Link>
+    <CommentsList post={post} />
   </>;
 }
 

@@ -6,6 +6,7 @@ import {
   POSTS_RECEIVED,
   START_FETCHING_POSTS,
   STOP_FETCHING_POSTS,
+  COMMENTS_RECEIVED,
 } from './types'
 
 const initialState: PostState = {
@@ -45,6 +46,16 @@ export function postReducer(
         ...state,
         isFetching: false,
       };
+    }
+    case COMMENTS_RECEIVED: {
+      let newState = cloneDeep(state);
+      let post = newState.posts.find(x => x.id === action.postId);
+      if(!post) {
+        return state;
+      }
+
+      post.comments = action.comments;
+      return newState;
     }
     default: {
       return state;
