@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchPost } from "../../store/post/actions";
 import { Post as PostObj } from "../../store/post/types";
 import useSelector from "../../store/useSelector";
+import { Link } from "react-router-dom";
 
 interface PostParams {
   match: {
@@ -34,12 +35,14 @@ const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) =>
     return <>
       <h2>Post not found</h2>
       <p>The requested post was not found.</p>
+      <Link to="/posts">Back to Posts</Link>
     </>;
   }
 
   return <>
-    {post.title}
-    {post.body}
+    <h2>{post.title}</h2>
+    <p>{post.body}</p>
+    <Link to="/posts">Back to Posts</Link>
   </>;
 }
 
