@@ -12,6 +12,7 @@ import {
 const initialState: PostState = {
   posts: [],
   isFetching: false,
+  fetchedAll: false,
 }
 
 export function postReducer(
@@ -21,6 +22,10 @@ export function postReducer(
   switch(action.type) {
     case POSTS_RECEIVED: {
       let newState = cloneDeep(state);
+      
+      if(action.payload.length > 1) {
+        newState.fetchedAll = true;
+      }
 
       action.payload.forEach(post => {
         let ix = findIndex(newState.posts, p => p.id === post.id);

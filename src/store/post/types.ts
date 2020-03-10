@@ -18,6 +18,7 @@ export interface PostComment {
 export interface PostState {
   posts: Post[],
   isFetching: boolean,
+  fetchedAll: boolean
 }
 
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';

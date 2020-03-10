@@ -6,11 +6,13 @@ import ModalSpinner from "../misc/ModalSpinner";
 import { Link } from "react-router-dom";
 
 const PostList: React.FunctionComponent = () => {
-  const { posts, isFetching } = useSelector(state => state.post);
+  const { posts, isFetching, fetchedAll } = useSelector(state => state.post);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(fetchAllPosts());
+    if(!fetchedAll) {
+      dispatch(fetchAllPosts());
+    }
   }, [dispatch]);
 
   return (
