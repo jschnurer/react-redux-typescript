@@ -3,10 +3,9 @@ import useSelector from "../../store/useSelector";
 import { useDispatch } from "react-redux";
 import { fetchAllPosts, fetchPost } from "../../store/post/actions";
 import ModalSpinner from "../misc/ModalSpinner";
-import PostFetchError from "./PostFetchError";
 
 const PostList: React.FunctionComponent = () => {
-  const { posts, isFetching, fetchError } = useSelector(state => state.post);
+  const { posts, isFetching } = useSelector(state => state.post);
   const dispatch = useDispatch();
 
   const [state, setState] = React.useState({
@@ -47,7 +46,6 @@ const PostList: React.FunctionComponent = () => {
         </p>
       </div>
       {isFetching && <ModalSpinner />}
-      {fetchError && <PostFetchError error={fetchError} />}
     </React.Fragment>
   );
 }

@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { Post, FETCH_ALL_POSTS, FETCH_POST, FetchPostAction } from "./types";
-import { postsReceived, startFetching, stopFetching, fetchFailed } from "./actions";
+import { postsReceived, startFetching, stopFetching } from "./actions";
+import { pushError } from "../error/actions";
 import PostsApi from "../../apis/posts/PostsApi";
 
 function* fetchAllPostsAsync() {
@@ -11,7 +12,7 @@ function* fetchAllPostsAsync() {
   }
   catch (error) {
     let err: Error = error;
-    yield put(fetchFailed(err.message));
+    yield put(pushError(err.message));
   }
   finally {
     yield put(stopFetching());
@@ -26,7 +27,7 @@ function* fetchPostAsync(action: FetchPostAction) {
   }
   catch (error) {
     let err: Error = error;
-    yield put(fetchFailed(err.message));
+    yield put(pushError(err.message));
   } finally {
     yield put(stopFetching());
   }

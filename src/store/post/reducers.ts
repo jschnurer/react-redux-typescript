@@ -7,14 +7,11 @@ import {
   POSTS_RECEIVED,
   START_FETCHING_POSTS,
   STOP_FETCHING_POSTS,
-  FETCHING_POSTS_FAILED,
-  CLEAR_FETCH_ERROR,
 } from './types'
 
 const initialState: PostState = {
   posts: [],
   isFetching: false,
-  fetchError: "",
 }
 
 const postSorter = (a: Post, b: Post) => a.title < b.title ? -1 : 1;
@@ -51,18 +48,6 @@ export function postReducer(
         ...state,
         isFetching: false,
       };
-    }
-    case FETCHING_POSTS_FAILED: {
-      return {
-        ...state,
-        fetchError: action.error
-      }
-    }
-    case CLEAR_FETCH_ERROR: {
-      return {
-        ...state,
-        fetchError: "",
-      }
     }
     default: {
       return state;

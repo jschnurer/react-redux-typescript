@@ -6,8 +6,6 @@ import {
   PostActionTypes,
   START_FETCHING_POSTS,
   STOP_FETCHING_POSTS,
-  FETCHING_POSTS_FAILED,
-  CLEAR_FETCH_ERROR,
 } from './types';
 
 export function fetchAllPosts(): PostActionTypes {
@@ -39,18 +37,5 @@ export function startFetching() : PostActionTypes {
 export function stopFetching() : PostActionTypes {
   return {
     type: STOP_FETCHING_POSTS
-  }
-}
-
-export function fetchFailed(error: string) : PostActionTypes {
-  return {
-    type: FETCHING_POSTS_FAILED,
-    error
-  }
-}
-
-export function clearFetchError() : PostActionTypes {
-  return {
-    type: CLEAR_FETCH_ERROR
   }
 }
