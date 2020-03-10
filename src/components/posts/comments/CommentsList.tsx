@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import Comment from "./Comment";
 import useSelector from "../../../store/useSelector";
 import { fetchComments } from "../../../store/comment/actions";
+import InlineSpinner from "../../misc/InlineSpinner";
 
 interface CommentsListProps {
   postId: number
@@ -10,9 +11,18 @@ interface CommentsListProps {
 
 const CommentsList: React.FunctionComponent<CommentsListProps> = ({ postId }) => {
   const dispatch = useDispatch();
-  const { comments } = useSelector(state => state.comment);
+  const { comments, isFetching } = useSelector(state => state.comment);
 
   let title = <h2>Comments</h2>;
+
+  if (isFetching) {
+    return <>
+      {title}
+      <div style={{ textAlign: "center" }}>
+        <InlineSpinner />
+      </div>
+    </>;
+  }
 
   if (!comments[postId]) {
     return <>
