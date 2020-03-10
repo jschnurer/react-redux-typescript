@@ -46,3 +46,7 @@ code {
 .accent5 {
   color: #FFE9FF;
 }
+
+a:visited {
+  color: #74007A;
+}

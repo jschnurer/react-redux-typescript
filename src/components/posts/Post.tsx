@@ -1,9 +1,9 @@
-import React, { Dispatch } from "react";
+import React, { useEffect } from "react";
 import ModalSpinner from "../misc/ModalSpinner";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchPost } from "../../store/post/actions";
-import { Post as PostObj, PostActionTypes, PostState } from "../../store/post/types";
-import { RootState } from "../../store";
+import { Post as PostObj } from "../../store/post/types";
+import useSelector from "../../store/useSelector";
 
 interface PostParams {
   match: {
@@ -15,59 +15,32 @@ interface PostParams {
   posts: PostObj[]
 }
 
-interface DispatchProps {
-  fetchPost: (id: number) => void
-}
+const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) => {
+  const dispatch = useDispatch();
+  const post = useSelector(state => state.post.posts.find(x => x.id === parseInt(id, 10)));
+  const isFetching = useSelector(state => state.post.isFetching);
 
-type Props = PostParams & DispatchProps & PostState;
-
-class Post extends React.Component<Props> {
-
-  getPost(id: number) {
-    return this.props.posts.find(x => x.id === id);
-  }
-
-  componentDidMount() {
-    const iId = parseInt(this.props.match.params.id);
-
-    if (iId && !this.getPost(iId)) {
-      this.props.fetchPost(iId);
-    }
-  }
-
-  render() {
-    const iId = parseInt(this.props.match.params.id);
-
-    if (!iId) {
-      return <>
-        <h2>Post not found</h2>
-        <p>The requested post was not found.</p>
-      </>;
-    }
-
-    if (this.props.isFetching) {
-      return <ModalSpinner />;
-    }
-
-    const post = this.getPost(iId);
-
+  useEffect(() => {
     if (!post) {
-      return <>
-        <h2>Post not found</h2>
-        <p>The requested post was not found.</p>
-      </>;
+      dispatch(fetchPost(parseInt(id)));
     }
+  }, [dispatch, id, post]);
 
+  if (isFetching) {
+    return <ModalSpinner />;
+  }
+
+  if (!post) {
     return <>
-      {post.title}
-      {post.body}
+      <h2>Post not found</h2>
+      <p>The requested post was not found.</p>
     </>;
   }
+
+  return <>
+    {post.title}
+    {post.body}
+  </>;
 }
 
-const mapStateToProps = (state: RootState) => state.post;
-const mapDispatchToProps = (dispatch: Dispatch<PostActionTypes>): DispatchProps => ({
-  fetchPost: (id: number) => dispatch(fetchPost(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default Post;
