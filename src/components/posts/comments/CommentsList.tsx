@@ -18,9 +18,7 @@ const CommentsList: React.FunctionComponent<CommentsListProps> = ({ postId }) =>
   if (isFetching) {
     return <>
       {title}
-      <div style={{ textAlign: "center" }}>
-        <InlineSpinner />
-      </div>
+      <InlineSpinner isCenterBlock={true} />
     </>;
   }
 
