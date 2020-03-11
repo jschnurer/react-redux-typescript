@@ -1,9 +1,14 @@
 div {
   display: flex;
+  margin: 1em 0;
 }
 
 label {
   display: inline-block;
   font-weight: bold;
   min-width: 8em;
+}
+
+p {
+  margin-top: 0;
 }

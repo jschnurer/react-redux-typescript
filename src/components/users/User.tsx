@@ -50,7 +50,7 @@ const User: React.FunctionComponent<UserProps> = ({ match: { params: { id } } })
           <div>
             <label>About Me:</label>
             <span>
-              {user.blurb.split('\\n').map(line => <div>{line}</div>)}
+              {user.blurb.split('\n').map((line, ix) => <p key={ix}>{line}</p>)}
             </span>
           </div>
         </>
