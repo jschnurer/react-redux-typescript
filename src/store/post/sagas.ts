@@ -7,7 +7,7 @@ import JsonApi from "../../apis/posts/JsonApi";
 function* fetchAllPostsAsync() {
   yield put(startFetching());
   try {
-    const posts: Post[] = yield call(JsonApi.fetchAll);
+    const posts: Post[] = yield call(JsonApi.fetchAllPosts);
     yield put(postsReceived(posts));
   }
   catch (error) {
@@ -22,7 +22,7 @@ function* fetchAllPostsAsync() {
 function* fetchPostAsync(action: FetchPostAction) {
   yield put(startFetching());
   try {
-    const post: Post = yield call(JsonApi.fetch, action.postId);
+    const post: Post = yield call(JsonApi.fetchPost, action.postId);
     yield put(postsReceived([post]));
   }
   catch (error) {
