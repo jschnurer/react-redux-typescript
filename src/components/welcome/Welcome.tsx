@@ -10,7 +10,7 @@ const Welcome: React.FunctionComponent = () =>
       is used for client-side navigation.
     </p>
     <p>
-      <Link to="posts">Post Listing</Link>
+      <Link to="/posts">Post Listing</Link>
     </p>
   </>;
 
