@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Welcome: React.FunctionComponent = () =>
+const Welcome: React.FC = () =>
   <>
     <h2>Welcome</h2>
     <p>

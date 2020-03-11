@@ -9,7 +9,7 @@ interface CommentsListProps {
   postId: number
 }
 
-const CommentsList: React.FunctionComponent<CommentsListProps> = ({ postId }) => {
+const CommentsList: React.FC<CommentsListProps> = ({ postId }) => {
   const dispatch = useDispatch();
   const { comments, isFetching } = useSelector(state => state.comment);
 

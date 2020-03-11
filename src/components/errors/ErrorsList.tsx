@@ -3,7 +3,7 @@ import useSelector from "../../store/useSelector";
 import Error from "./Error";
 import "./ErrorsList.scoped.css";
 
-const ErrorsList: React.FunctionComponent = () => {
+const ErrorsList: React.FC = () => {
   const { errors } = useSelector(state => state.error);
 
   if (!errors.length) {

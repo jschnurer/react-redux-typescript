@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewPost : React.FunctionComponent = () => 
+const NewPost : React.FC = () => 
   <>
     <h2>New Post</h2>
   </>;

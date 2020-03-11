@@ -4,7 +4,7 @@ import { clearError } from "../../store/error/actions";
 import "./Error.scoped.css";
 import { ErrorMessage } from "../../store/error/types";
 
-const Error: React.FunctionComponent<ErrorMessage> = (props) => {
+const Error: React.FC<ErrorMessage> = (props) => {
   const dispatch = useDispatch();
 
   return (

@@ -9,7 +9,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-const FormattedDateString: React.FunctionComponent<FormattedDateStringProps> = (props) => {
+const FormattedDateString: React.FC<FormattedDateStringProps> = (props) => {
   if (props.date) {
     let str =
       props.date.getDate() + '-' +

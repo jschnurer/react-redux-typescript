@@ -13,7 +13,7 @@ interface UserProps {
   },
 }
 
-const User: React.FunctionComponent<UserProps> = ({ match: { params: { id } } }) => {
+const User: React.FC<UserProps> = ({ match: { params: { id } } }) => {
   const [user, setUser] = useState<UserType | null>(null);
   const [isFetching, setFetching] = useState<boolean>(false);
   const [fetchError, setFetchError] = useState<string | undefined>();

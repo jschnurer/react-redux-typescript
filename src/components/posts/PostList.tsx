@@ -6,7 +6,7 @@ import ModalSpinner from "../misc/ModalSpinner";
 import { Link } from "react-router-dom";
 import "./PostList.scoped.css";
 
-const PostList: React.FunctionComponent = () => {
+const PostList: React.FC = () => {
   const { posts, isFetching, fetchedAll } = useSelector(state => state.post);
   const dispatch = useDispatch();
 

@@ -10,7 +10,7 @@ import Post from "./components/posts/Post";
 import User from "./components/users/User";
 import NewPost from "./components/posts/NewPost";
 
-const Routing: React.FunctionComponent = () =>
+const Routing: React.FC = () =>
   <>
     <Switch>
       <Route path="/posts/new" component={NewPost} />

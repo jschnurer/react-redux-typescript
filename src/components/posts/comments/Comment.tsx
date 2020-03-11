@@ -4,7 +4,7 @@ import FormattedDateString from "../../misc/FormattedDateString";
 import { PostComment } from "../../../store/comment/types";
 import { Link } from "react-router-dom";
 
-const Comment: React.FunctionComponent<PostComment> = (comment) => {
+const Comment: React.FC<PostComment> = (comment) => {
   return <div className="holder">
     <div className="speech-bubble">{comment.body}</div>
     <label>

@@ -12,7 +12,7 @@ const taglines = [
 
 const getRandomTagline = () => taglines[Math.floor(Math.random() * taglines.length)];
 
-const Header: React.FunctionComponent = () =>
+const Header: React.FC = () =>
   <div className="accent1-bg header">
     <div>
       <Link to="/" className="title">React Redux Typescript Example</Link>

@@ -4,7 +4,7 @@ interface InlineSpinnerProps {
   isCenterBlock?: boolean,
 }
 
-const InlineSpinner: React.FunctionComponent<InlineSpinnerProps> = (props) => {
+const InlineSpinner: React.FC<InlineSpinnerProps> = (props) => {
   let img = <img src="/pulse-1s-200px.svg" alt="Loading..." />;
 
   if (props?.isCenterBlock) {

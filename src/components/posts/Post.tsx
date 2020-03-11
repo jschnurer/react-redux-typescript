@@ -18,7 +18,7 @@ interface PostParams {
   posts: PostObj[]
 }
 
-const Post: React.FunctionComponent<PostParams> = ({match: {params: { id }}}) => {
+const Post: React.FC<PostParams> = ({match: {params: { id }}}) => {
   const dispatch = useDispatch();
   const post = useSelector(state => state.post.posts.find(x => x.id === parseInt(id, 10)));
   const isFetchingPosts = useSelector(state => state.post.isFetching);

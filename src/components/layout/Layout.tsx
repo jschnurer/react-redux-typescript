@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import "./Layout.scoped.css";
 
-const Layout: React.FunctionComponent = (props) => 
+const Layout: React.FC = (props) => 
   <>
     <Header />
     <div className="page">
