@@ -1,0 +1,9 @@
+div {
+  display: flex;
+}
+
+label {
+  display: inline-block;
+  font-weight: bold;
+  min-width: 8em;
+}

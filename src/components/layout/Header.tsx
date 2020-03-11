@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.scoped.css";
+import { Link, BrowserRouter } from "react-router-dom";
 
 const taglines = [
   "Just like mom used to make!",
@@ -14,8 +15,8 @@ const getRandomTagline = () => taglines[Math.floor(Math.random() * taglines.leng
 const Header: React.FunctionComponent = () =>
   <div className="accent1-bg header">
     <div>
-      <span className="title">React Redux Typescript Example</span>
-      <span className="tagline accent5">"{getRandomTagline()}"</span>
+      <Link to="/" className="title">React Redux Typescript Example</Link>
+      <Link to="/" className="tagline">"{getRandomTagline()}"</Link>
     </div>
   </div>;
 

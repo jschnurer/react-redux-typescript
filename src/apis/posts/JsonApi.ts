@@ -24,7 +24,7 @@ class JsonApi {
       .then(res => res.map((comment: any) => formatComment(comment)));
   }
 
-  public async fetchUser(userId: number): Promise<User> {
+  public async fetchUser(userId: string): Promise<User> {
     return fetch(`${url}/users/${userId}`)
       .then(res => res.json())
       .then(user => formatUser(user));

@@ -14,6 +14,7 @@
   font-size: 2em;
   font-weight: bold;
   color: white;
+  text-decoration: none;
 }
 
 .tagline {
@@ -21,4 +22,6 @@
   float: right;
   margin-right: 3em;
   font-style: italic;
+  color: #FFE9FF;
+  text-decoration: none;
 }
