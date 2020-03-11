@@ -4,7 +4,7 @@ import { PostComment } from "../../store/comment/types";
 
 const url = "https://my-json-server.typicode.com/jschnurer/json-placeholder";
 
-class PostsApi {
+class JsonApi {
   public async fetchAll(): Promise<Post[]> {
     return fetch(`${url}/posts`)
       .then(res => res.json())
@@ -24,7 +24,7 @@ class PostsApi {
   }
 }
 
-export default new PostsApi();
+export default new JsonApi();
 
 function formatPost(post: any): Post {
   return {
