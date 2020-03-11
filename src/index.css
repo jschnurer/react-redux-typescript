@@ -79,6 +79,7 @@ button.secondary:hover {
 .checkbox-label {
   position: relative;
   padding-left: 1em;
+  cursor: pointer;
 }
 
 .checkbox-label input {
@@ -101,15 +102,30 @@ button.secondary:hover {
   display: inline-block;
 }
 
-.checkbox-label input:checked ~ .checkbox-custom:after {
-  content: ' ';
-  width: .33em;
-  height: .33em;
+.checkbox-label input:checked ~ .checkbox-custom {
   background-color: #74007A;
+}
+
+.checkbox-label .checkbox-custom::before {
+  content: '✔';
+  color: white;
   position: absolute;
   display: inline-block;
+  font-size: .65em;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-55%, -52%);
+  border-radius: .1em; 
+}
+
+.checkbox-label input:checked ~ .checkbox-custom:after {
+  content: '✔';
+  color: white;
+  position: absolute;
+  display: inline-block;
+  font-size: .65em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-55%, -52%);
   border-radius: .1em;
 }
