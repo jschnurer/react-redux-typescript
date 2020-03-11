@@ -8,10 +8,12 @@ import ErrorsList from './components/errors/ErrorsList';
 import Welcome from "./components/welcome/Welcome";
 import Post from "./components/posts/Post";
 import User from "./components/users/User";
+import NewPost from "./components/posts/NewPost";
 
 const Routing: React.FunctionComponent = () =>
   <>
     <Switch>
+      <Route path="/posts/new" component={NewPost} />
       <Route path="/posts/:id" component={Post} />
       <Route path="/posts">
         <PostList />

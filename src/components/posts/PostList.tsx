@@ -11,7 +11,7 @@ const PostList: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if(!fetchedAll) {
+    if (!fetchedAll) {
       dispatch(fetchAllPosts());
     }
   }, [dispatch, fetchedAll]);
@@ -24,6 +24,7 @@ const PostList: React.FunctionComponent = () => {
           {post.title}
         </Link>)
       }
+      <Link to="/posts/new">New Post &gt;</Link>
       {isFetching && <ModalSpinner />}
     </>
   );
