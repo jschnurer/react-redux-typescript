@@ -50,3 +50,28 @@ code {
 a:visited {
   color: #74007A;
 }
+
+button {
+  color: white;
+  background-color: #74007A;
+  font-size: 1em;
+  padding: .5em;
+  border-radius: .5em;
+  border: 1px #3A003E solid;
+  cursor: pointer;
+  margin: .5em;
+}
+
+button:hover {
+  background-color: #A53FAA;
+}
+
+button.secondary {
+  color: #222;
+  background-color: white;
+  border: 1px #222 solid;
+}
+
+button.secondary:hover {
+  background-color: rgb(235, 235, 235);
+}

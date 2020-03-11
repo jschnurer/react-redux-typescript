@@ -1,0 +1,79 @@
+form {
+  font-size: 1.5em;
+}
+
+input[type="text"], textarea {
+  font-size: 1em;
+  border-radius: .2em;
+  border: 1px #ccc solid;
+  padding: .5em;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 15em;
+}
+
+.row {
+  margin-bottom: 1em;
+}
+
+.form-validation-error {
+  color: red;
+  font-size: .65em;
+  font-style: italic;
+  padding-left: 0.5em;
+}
+
+.input-validation-error {
+  border-color: rgb(255, 0, 0) !important;
+  color: red;
+}
+
+.button-row {
+  display: flex;
+}
+
+button {
+  flex: auto;
+}
+
+.checkbox-label {
+  position: relative;
+  padding-left: 1em;
+}
+
+.checkbox-label input {
+  display: none;
+}
+
+.checkbox-label .checkbox-custom {
+  height: .8em;
+  width: .8em;
+  border: 1px #74007A solid;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: .1em;
+}
+
+.checkbox-label .checkbox-text {
+  display: inline-block;
+}
+
+.checkbox-label input:checked ~ .checkbox-custom:after {
+  content: ' ';
+  width: .33em;
+  height: .33em;
+  background-color: #74007A;
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: .1em;
+}

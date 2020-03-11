@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.scoped.css";
-import { Link, BrowserRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const taglines = [
   "Just like mom used to make!",
