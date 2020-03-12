@@ -60,12 +60,12 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
           disabled={isSubmitting}
           className="secondary">
           Reset
-      </button>
+        </button>
         <button
           type="submit"
           disabled={isSubmitting}>
           Save Post
-      </button>
+        </button>
       </div>
     </Form>
   </>;
@@ -82,13 +82,14 @@ const newPost = withFormik<NewPostFormValues, FormValues>({
   },
 
   validationSchema: Yup.object().shape({
-    title: Yup.string().required("Required"),
-    body: Yup.string().required("Required"),
+    title: Yup.string().required("A post needs a title."),
+    body: Yup.string().required("Is a post without anything in it really a post?"),
     isPrivate: Yup.boolean().required("Required"),
   }),
 
-  handleSubmit: values => {
-    // do submitting things
+  handleSubmit: (values, { setSubmitting }) => {
+    console.log(values);
+    setSubmitting(false);
   },
 })(InnerForm);
 
