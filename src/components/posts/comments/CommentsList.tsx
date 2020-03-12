@@ -4,6 +4,10 @@ import Comment from "./Comment";
 import useSelector from "../../../store/useSelector";
 import { fetchComments } from "../../../store/comment/actions";
 import InlineSpinner from "../../misc/InlineSpinner";
+import NewComment from "./NewComment";
+
+const Divider: React.FC = () => 
+  <hr style={{height: 3, border: "none", borderRadius: "100%", margin: "2em 0"}} className="accent4-bg" />;
 
 interface CommentsListProps {
   postId: number
@@ -22,6 +26,8 @@ const CommentsList: React.FC<CommentsListProps> = ({ postId }) => {
     </>;
   }
 
+  const newComment = <NewComment />
+
   if (!comments[postId]) {
     return <>
       {title}
@@ -32,12 +38,16 @@ const CommentsList: React.FC<CommentsListProps> = ({ postId }) => {
   } else if (comments[postId] && comments[postId].length) {
     return <>{title}
       <div>
-        {comments[postId].sort((a,b) => a.time < b.time ? -1 : 1).map(c => <Comment key={c.id} {...c} />)}
+        {newComment}
+        <Divider />
+        {comments[postId].sort((a, b) => a.time < b.time ? -1 : 1).map(c => <Comment key={c.id} {...c} />)}
       </div>
     </>;
   } else {
     return <>
       {title}
+      {newComment}
+      <Divider />
       *crickets*
     </>;
   }

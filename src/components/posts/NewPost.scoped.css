@@ -15,22 +15,15 @@ textarea {
   margin-bottom: 1em;
 }
 
-.form-validation-error {
-  color: red;
-  font-size: .65em;
-  font-style: italic;
-  padding-left: 0.5em;
-}
-
-.input-validation-error {
-  border-color: rgb(255, 0, 0) !important;
-  color: red;
-}
-
 .button-row {
   display: flex;
 }
 
 button {
   flex: auto;
+  margin-right: 1em;
+}
+
+button:last-child {
+  margin-right: initial;
 }

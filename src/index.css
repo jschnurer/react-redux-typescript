@@ -56,6 +56,12 @@ input, textarea, select, button {
   font-size: 1em;
 }
 
+textarea {
+  border-radius: .2em;
+  border: 1px #ccc solid;
+  padding: .5em;
+}
+
 button {
   color: white;
   background-color: #74007A;
@@ -63,7 +69,6 @@ button {
   border-radius: .5em;
   border: 1px #3A003E solid;
   cursor: pointer;
-  margin: .5em;
 }
 
 button:hover {
@@ -132,4 +137,16 @@ button.secondary:hover {
   top: 50%;
   transform: translate(-55%, -52%);
   border-radius: .1em;
+}
+
+.form-validation-error {
+  color: red;
+  font-size: .65em;
+  font-style: italic;
+  padding-left: 0.5em;
+}
+
+.input-validation-error {
+  border-color: rgb(255, 0, 0) !important;
+  color: red;
 }
