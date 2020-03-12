@@ -101,7 +101,7 @@ const FormikNewPostForm = withFormik<NewPostFormValues, FormValues>({
       id: 0,
       title: values.title,
       body: values.body,
-      userId: "jschnurer",
+      userId: "personUsingTheSiteRightNow",
       time: new Date()
     })
       .then(post => {
