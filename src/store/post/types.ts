@@ -9,7 +9,7 @@ export interface Post {
 export interface PostState {
   posts: Post[],
   isFetching: boolean,
-  fetchedAll: boolean
+  fetchedAll: boolean,
 }
 
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
@@ -32,11 +32,11 @@ interface PostsReceivedAction {
   payload: Post[]
 }
 
-interface StartFetchingAction {
+interface StartFetchingPostsAction {
   type: typeof START_FETCHING_POSTS
 }
 
-interface StopFetchingAction {
+interface StopFetchingPostsAction {
   type: typeof STOP_FETCHING_POSTS
 }
 
@@ -44,5 +44,5 @@ export type PostActionTypes =
   FetchAllPostsAction |
   FetchPostAction |
   PostsReceivedAction |
-  StartFetchingAction |
-  StopFetchingAction;
+  StartFetchingPostsAction |
+  StopFetchingPostsAction;

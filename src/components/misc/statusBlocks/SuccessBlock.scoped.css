@@ -1,0 +1,6 @@
+.success-block {
+  padding: .66em;
+  background-color: rgb(227, 255, 227);
+  color: rgb(0, 123, 0);
+  border: 1px rgb(0, 123, 0) solid;
+}

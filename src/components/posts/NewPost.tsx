@@ -1,25 +1,48 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { withFormik, FormikProps, Field, Form } from "formik";
 import * as Yup from "yup";
 import "./NewPost.scoped.css";
+import { postsReceived } from "../../store/post/actions";
+import { connect } from "react-redux";
+import { Post } from "../../store/post/types";
+import ModalSpinner from "../misc/ModalSpinner";
+import JsonApi from "../../apis/posts/JsonApi";
+import { pushError } from "../../store/error/actions";
+import SuccessBlock from "../misc/statusBlocks/SuccessBlock";
 
 interface FormValues {
   title: string,
   body: string,
-  isPrivate: boolean,
 }
 
-interface NewPostFormValues {
+interface InitialNewPostValues {
   initialTitle: string,
   initialBody: string,
-  initialIsPrivate: boolean,
 }
 
+const initialValues: InitialNewPostValues = {
+  initialTitle: '',
+  initialBody: '',
+}
+
+interface FormStatus {
+  success: string
+}
+
+type NewPostFormValues = InitialNewPostValues & DispatchProps;
+
 const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
-  const { touched, errors, isSubmitting } = props;
+  const { touched, errors, isSubmitting, status } = props;
+  const formStatus: FormStatus = status;
 
   return <>
     <h2>New Post</h2>
+    {formStatus?.success &&
+      <>
+        <SuccessBlock>{formStatus.success}</SuccessBlock>
+        <br />
+      </>
+    }
     <Form>
       <div className="row">
         <Field
@@ -41,19 +64,6 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
         {touched.body && errors.body && <div className="form-validation-error">{errors.body}</div>}
       </div>
 
-      <div className="row">
-        <label className="checkbox-label">
-          <Field
-            type="checkbox"
-            name="isPrivate"
-            className={touched.isPrivate && errors.isPrivate ? "input-validation-error" : ""}
-          />
-          <span className="checkbox-custom"></span>
-          <span className="checkbox-text">Private (visitors will not see private posts)</span>
-        </label>
-        {touched.isPrivate && errors.isPrivate && <div className="form-validation-error">{errors.isPrivate}</div>}
-      </div>
-
       <div className="button-row">
         <button
           type="reset"
@@ -68,29 +78,63 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
         </button>
       </div>
     </Form>
+    {isSubmitting && <ModalSpinner />}
   </>;
 }
 
-const newPost = withFormik<NewPostFormValues, FormValues>({
+const FormikNewPostForm = withFormik<NewPostFormValues, FormValues>({
   // Transform outer props into form values
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     return {
-      title: '',
-      body: '',
-      isPrivate: false,
+      title: props.initialTitle,
+      body: props.initialBody,
     };
   },
 
   validationSchema: Yup.object().shape({
     title: Yup.string().required("A post needs a title."),
-    body: Yup.string().required("Is a post without anything in it really a post?"),
-    isPrivate: Yup.boolean().required("Required"),
+    body: Yup.string().required("Is a post without anything in it really a post?")
   }),
 
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log(values);
-    setSubmitting(false);
+  handleSubmit: (values, { props, setSubmitting, resetForm, setStatus }) => {
+    JsonApi.createNewPost({
+      id: 0,
+      title: values.title,
+      body: values.body,
+      userId: "jschnurer",
+      time: new Date()
+    })
+      .then(post => {
+        console.log(post);
+        props.postsReceived([post]);
+        resetForm();
+        setStatus({
+          success: "Your post was saved successfully."
+        });
+      })
+      .catch(error => {
+        let err: Error = error;
+        props.pushError(err.message);
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   },
 })(InnerForm);
 
-export default newPost;
+interface DispatchProps {
+  pushError: (message: string) => void,
+  postsReceived: (posts: Post[]) => void,
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => ({
+  pushError: (message) => dispatch(pushError(message)),
+  postsReceived: (posts) => dispatch(postsReceived(posts)),
+});
+
+const ConnectedNewPostForm = connect(null, (dispatch) => ({
+  ...mapDispatchToProps(dispatch),
+  ...initialValues
+}))(FormikNewPostForm);
+
+export default ConnectedNewPostForm;

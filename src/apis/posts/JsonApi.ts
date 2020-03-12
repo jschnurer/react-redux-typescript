@@ -2,6 +2,7 @@ import { Post } from "../../store/post/types";
 import formatDate from "../../utils/parseDate";
 import { PostComment } from "../../store/comment/types";
 import { User } from "../../types/userTypes";
+import padLeft from "../../utils/padLeft";
 
 const url = "https://my-json-server.typicode.com/jschnurer/json-placeholder";
 
@@ -16,6 +17,29 @@ class JsonApi {
     return fetch(`${url}/posts/${id}`)
       .then(res => res.json())
       .then(post => formatPost(post));
+  }
+
+  public async createNewPost(post: Post): Promise<Post> {
+    let backendPost: any = {...post};
+
+    if (post.time) {
+      backendPost.time = post.time?.getUTCFullYear() + '-'
+        + padLeft(post.time?.getUTCMonth(), 10, '0') + '-'
+        + post.time?.getUTCDate() + ' '
+        + padLeft(post.time?.getUTCHours(), 10, '0') + ':'
+        + padLeft(post.time?.getUTCMinutes(), 10, '0') + ':'
+        + padLeft(post.time?.getUTCSeconds(), 10, '0') + 'Z';
+    }
+
+    return fetch(`${url}/posts`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(backendPost),
+      })
+      .then(res => res.json())
+      .then(returnedPost => formatPost(returnedPost));
   }
 
   public async fetchComments(postId: number): Promise<PostComment[]> {
