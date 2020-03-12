@@ -3,7 +3,7 @@ export interface PostComment {
   body: string,
   postId: number,
   userId: string,
-  time: Date | null
+  time: Date
 }
 
 export interface PostIdToPostCommentsMap {

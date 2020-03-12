@@ -29,10 +29,10 @@ const CommentsList: React.FC<CommentsListProps> = ({ postId }) => {
         Load Comments
       </button>
     </>;
-  } else if (comments[postId] && comments[postId]) {
+  } else if (comments[postId] && comments[postId].length) {
     return <>{title}
       <div>
-        {comments[postId].map(c => <Comment key={c.id} {...c} />)}
+        {comments[postId].sort((a,b) => a.time < b.time ? -1 : 1).map(c => <Comment key={c.id} {...c} />)}
       </div>
     </>;
   } else {

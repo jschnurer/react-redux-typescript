@@ -3,7 +3,7 @@ export interface Post {
   id: number,
   title: string,
   body: string,
-  time: Date | null
+  time: Date
 }
 
 export interface PostState {

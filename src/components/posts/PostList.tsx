@@ -19,7 +19,7 @@ const PostList: React.FC = () => {
   return (
     <>
       <h2>Posts</h2>
-      {posts.map(post =>
+      {posts.sort((a,b) => a.time < b.time ? 1 : -1).map(post =>
         <Link key={post.id} to={`/posts/${post.id}`}>
           {post.title}
         </Link>)
