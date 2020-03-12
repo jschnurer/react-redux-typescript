@@ -38,7 +38,7 @@ const Post: React.FC<PostParams> = ({match: {params: { id }}}) => {
     {post &&
       <span><Link to={`/users/${post.userId}`}>{post.userId}</Link>, <FormattedDateString date={post.time} /></span>
     }
-    <p>{post?.id || "The requested post was not found."}</p>
+    <p>{post?.body || "The requested post was not found."}</p>
     <Link to="/posts">&lt; Back to Posts</Link>
     {post &&
       <CommentsList postId={post.id} />

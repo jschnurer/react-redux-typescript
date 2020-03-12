@@ -9,6 +9,7 @@ import ModalSpinner from "../misc/ModalSpinner";
 import JsonApi from "../../apis/posts/JsonApi";
 import { pushError } from "../../store/error/actions";
 import SuccessBlock from "../misc/statusBlocks/SuccessBlock";
+import { Link } from "react-router-dom";
 
 interface FormValues {
   title: string,
@@ -26,7 +27,7 @@ const initialValues: InitialNewPostValues = {
 }
 
 interface FormStatus {
-  success: string
+  successPostId: number
 }
 
 type NewPostFormValues = InitialNewPostValues & DispatchProps;
@@ -37,9 +38,11 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
 
   return <>
     <h2>New Post</h2>
-    {formStatus?.success &&
+    {formStatus?.successPostId &&
       <>
-        <SuccessBlock>{formStatus.success}</SuccessBlock>
+        <SuccessBlock>
+          Post created! <Link to={`/posts/${formStatus.successPostId}`}>Go here</Link> to see it.
+        </SuccessBlock>
         <br />
       </>
     }
@@ -107,9 +110,10 @@ const FormikNewPostForm = withFormik<NewPostFormValues, FormValues>({
       .then(post => {
         props.postsReceived([post]);
         resetForm();
-        setStatus({
-          success: "Your post was saved successfully."
-        });
+        const formStatus: FormStatus = {
+          successPostId: post.id,
+        };
+        setStatus(formStatus);
       })
       .catch(error => {
         let err: Error = error;
