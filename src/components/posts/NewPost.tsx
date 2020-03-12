@@ -49,7 +49,7 @@ const InnerForm: React.FC<FormikProps<FormValues>> = (props) => {
             className={touched.isPrivate && errors.isPrivate ? "input-validation-error" : ""}
           />
           <span className="checkbox-custom"></span>
-          <span className="checkbox-text">Private</span>
+          <span className="checkbox-text">Private (visitors will not see private posts)</span>
         </label>
         {touched.isPrivate && errors.isPrivate && <div className="form-validation-error">{errors.isPrivate}</div>}
       </div>

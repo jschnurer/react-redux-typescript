@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.25em;
 }
 
 code {
@@ -51,10 +52,13 @@ a:visited {
   color: #74007A;
 }
 
+input, textarea, select, button {
+  font-size: 1em;
+}
+
 button {
   color: white;
   background-color: #74007A;
-  font-size: 1em;
   padding: .5em;
   border-radius: .5em;
   border: 1px #3A003E solid;
