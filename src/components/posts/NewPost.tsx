@@ -105,7 +105,6 @@ const FormikNewPostForm = withFormik<NewPostFormValues, FormValues>({
       time: new Date()
     })
       .then(post => {
-        console.log(post);
         props.postsReceived([post]);
         resetForm();
         setStatus({
