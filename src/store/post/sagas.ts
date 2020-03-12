@@ -23,7 +23,9 @@ function* fetchPostAsync(action: FetchPostAction) {
   yield put(startFetching());
   try {
     const post: Post = yield call(JsonApi.fetchPost, action.postId);
-    yield put(postsReceived([post]));
+    if (post) {
+      yield put(postsReceived([post]));
+    }
   }
   catch (error) {
     let err: Error = error;

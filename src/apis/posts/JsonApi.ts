@@ -13,14 +13,19 @@ class JsonApi {
       .then(res => res.map((post: any) => formatPost(post)));
   }
 
-  public async fetchPost(id: number): Promise<Post> {
+  public async fetchPost(id: number): Promise<Post | null> {
     return fetch(`${url}/posts/${id}`)
-      .then(res => res.json())
-      .then(post => formatPost(post));
+      .then(res => {
+        if (res.status === 404) {
+          return null;
+        }
+        return res.json();
+      })
+      .then(post => post ? formatPost(post) : null);
   }
 
   public async createNewPost(post: Post): Promise<Post> {
-    let backendPost: any = {...post};
+    let backendPost: any = { ...post };
 
     if (post.time) {
       backendPost.time = post.time?.getUTCFullYear() + '-'
@@ -32,12 +37,12 @@ class JsonApi {
     }
 
     return fetch(`${url}/posts`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(backendPost),
-      })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(backendPost),
+    })
       .then(res => res.json())
       .then(returnedPost => formatPost(returnedPost));
   }
