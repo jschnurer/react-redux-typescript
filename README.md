@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# React + Redux + Typescript + Saga Example Website
+
+This project is an example website showing how set up and build a small react app.
+This project uses:
+* React
+* Typescript
+* Redux
+* Saga
+* React-Router
+* Scoped scss (using craco)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
