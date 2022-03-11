@@ -28,7 +28,7 @@ const PostList = () => {
       // reducer and the sagas to stop trying to load data (if it's currently loading).
       dispatch(cancelLoadPosts());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

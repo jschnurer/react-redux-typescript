@@ -23,7 +23,7 @@ const Post: React.FC = () => {
     return () => {
       dispatch(cancelLoadPost());
     };
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <div>
