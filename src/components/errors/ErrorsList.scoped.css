@@ -1,6 +1,0 @@
-div {
-  position: fixed;
-  left: 50%;
-  bottom: 1em;
-  transform: translateX(-50%);
-}

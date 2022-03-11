@@ -1,0 +1,26 @@
+.comment {
+  background-color: #474e5c;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  .commentor {
+    background-color: rgb(34, 37, 44);
+    padding: 1vmin;
+    display: flex;
+
+    .name,
+    .email {
+      flex: 1;
+    }
+
+    .email {
+      text-align: right;
+    }
+  }
+
+  > p {
+    padding: 0.5vmin 1vmin;
+    margin: 0;
+  }
+}
