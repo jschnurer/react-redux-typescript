@@ -21,7 +21,7 @@ const initialState: PostState = {
   },
 };
 
-const counterSlice = createSlice({
+const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
@@ -55,6 +55,6 @@ export const {
   startLoadPost,
   finishLoadPost,
   cancelLoadPost,
-} = counterSlice.actions;
+} = postSlice.actions;
 
-export default counterSlice.reducer;
+export default postSlice.reducer;
